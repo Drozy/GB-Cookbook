@@ -43,5 +43,5 @@ class RecipeTag(models.Model):
     tag = models.ForeignKey(Tag, related_name='recipes', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = 'категория'
-        verbose_name_plural = 'категории'
+        verbose_name = 'категория блюда'
+        verbose_name_plural = 'категории блюда'
