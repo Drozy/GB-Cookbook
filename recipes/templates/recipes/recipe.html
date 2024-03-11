@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}{{ recipe }}{% endblock %}
+{% block content %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-3">
+            <img class="img-fluid rounded-start" src="{{ recipe.image.url }}" alt="Фото {{ recipe }}">
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h3 class="card-title">{{ recipe }}</h3>
+                {% for tag in recipe.tags.all %}
+                <span class="badge text-bg-secondary">{{ tag }}</span>
+                {% endfor %}
+                <p class="card-text">Время приготовления: {{ recipe.cooking_time }} минут</p>
+                <p class="card-text">{{ recipe.description }}</p>
+                <hr>
+                <h5 class="card-title">Ингридиенты:</h5>
+                <p class="card-text">{{ recipe.ingredients | linebreaksbr }}</p>
+                <h5 class="card-title">Шаги приготовления:</h5>
+                <p class="card-text">{{ recipe.cooking_steps | linebreaksbr }}</p>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <small class="text-body-secondary">Автор: {{ recipe.author }}</small>
+                    </div>
+                    <div class="col-4 text-end">
+                        <small class="text-body-secondary">{{ recipe.pub_date }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
