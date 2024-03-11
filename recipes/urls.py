@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView, RecipeView, RecipeCreate, RecipeUpdate
+from .views import IndexView, RecipeView, RecipeCreate
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
