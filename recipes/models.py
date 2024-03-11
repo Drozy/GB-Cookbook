@@ -12,6 +12,7 @@ class Recipe(models.Model):
     cooking_steps = models.TextField('Шаги приготовления')
     cooking_time = models.PositiveSmallIntegerField('Время приготовления')
     image = models.ImageField('Изображение', upload_to='recipes/')
+    tags = models.ManyToManyField('Tag', related_name='recipes', verbose_name='Категория')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', verbose_name='Автор рецепта')
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True, db_index=True)
 
@@ -36,12 +37,3 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class RecipeTag(models.Model):
-    recipe = models.ForeignKey(Recipe, related_name='tags', on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, related_name='recipes', on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'категория блюда'
-        verbose_name_plural = 'категории блюда'
