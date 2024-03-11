@@ -27,6 +27,8 @@
                         <small class="text-body-secondary">{{ recipe.pub_date }}</small>
                     </div>
                 </div>
+                <a href="{% url 'recipe_edit' recipe.id %}" class="btn btn-primary">Редактировать</a>
+                <a href="{% url 'recipe_delete' recipe.id %}" class="btn btn-danger">Удалить</a>
             </div>
         </div>
     </div>

@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
-{% block title %}Новый рецепт{% endblock %}
+{% block title %}Рецепт{% endblock %}
 {% block content %}
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Добавьте свой рецепт</h4>
+            <h4 class="card-title">{% if recipe %} Отредактируйте {%else %} Добавьте {%endif%} рецепт</h4>
         </div>
-        <table class="table">
-            <tbody>
-                {{ form.as_table }}
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <div class="card-body">
+            <table class="table">
+                <tbody>
+                    {{ form.as_table }}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Отмена</a>
+        </div>
     </div>
 </form>
 {% endblock %}
