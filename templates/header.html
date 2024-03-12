@@ -1,0 +1,32 @@
+<header class="navbar bg-body-tertiary sticky-top">
+    <nav class="container">
+        <span class="navbar-brand mb-0 h1 fw-bold">Книга рецептов</span>
+        <ul class="nav">
+            {% with request.resolver_match.url_name as url_name %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Главная</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'user_recipes' user.id %}">
+                Мои рецепты</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'recipe_create' %}">Добавить рецепт</a></li>
+            {% endif %}
+            {% endwith %}
+        </ul>
+        <ul class="nav">
+            {% if user.is_authenticated %}
+            <li class="navbar-text fw-bold">{{ user.get_username }}</li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'password_change' %}">Изменить пароль</a></li>
+            <li class="nav-item">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Выход</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Войти</a></li>
+            <li class="nav-item"><a class="btn btn-primary" role="button" href="{% url 'signup' %}">Создать аккаунт</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

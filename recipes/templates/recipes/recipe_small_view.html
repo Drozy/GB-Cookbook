@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-{% block title %}{{ recipe }}{% endblock %}
-{% block content %}
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-3">
@@ -8,17 +5,12 @@
         </div>
         <div class="col-md-9">
             <div class="card-body">
-                <h3 class="card-title">{{ recipe }}</h3>
+                <h3 class="card-title"><a href="{{ recipe.get_absolute_url }}">{{ recipe }}</a></h3>
                 {% for tag in recipe.tags.all %}
                 <span class="badge text-bg-secondary">{{ tag }}</span>
                 {% endfor %}
                 <p class="card-text">Время приготовления: {{ recipe.cooking_time }} минут</p>
                 <p class="card-text">{{ recipe.description }}</p>
-                <hr>
-                <h5 class="card-title">Ингридиенты:</h5>
-                <p class="card-text">{{ recipe.ingredients | linebreaksbr }}</p>
-                <h5 class="card-title">Шаги приготовления:</h5>
-                <p class="card-text">{{ recipe.cooking_steps | linebreaksbr }}</p>
                 <div class="row justify-content-between">
                     <div class="col-4">
                         <small class="text-body-secondary">Автор: {{ recipe.author }}</small>
@@ -27,12 +19,7 @@
                         <small class="text-body-secondary">{{ recipe.pub_date }}</small>
                     </div>
                 </div>
-                {% if user.is_authenticated and user == recipe.author %}
-                <a href="{% url 'recipe_edit' recipe.id %}" class="btn btn-primary">Редактировать</a>
-                <a href="{% url 'recipe_delete' recipe.id %}" class="btn btn-danger">Удалить</a>
-                {% endif %}
             </div>
         </div>
     </div>
 </div>
-{% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}Книга рецептов{% endblock %}
+{% block title %}Рецепты {{ user.get_username }}{% endblock %}
 {% block content %}
+<h3>Рецепты {{ user.get_username }}</h3>
 {% for recipe in recipes %}
 {% include './recipe_small_view.html' %}
 {% endfor %}
